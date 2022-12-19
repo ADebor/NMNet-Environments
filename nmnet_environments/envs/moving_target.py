@@ -18,20 +18,22 @@ class MovingTargetEnv(gym.Env):
 
         # rendering specs
         self.window_size = 512
-
+        
         # env specs
+        self._alpha = 0.0
         if alpha:
             self._alpha = alpha
         else:
-            self._alpha = self._draw_alpha()
-        self.pos_dom = [-5 - self._alpha, 5 - self._alpha]
+            self._draw_alpha()
+            
+        self.pos_dom = [-5.0 - self._alpha, 5.0 - self._alpha]
 
-        self._p = None  # ground truth (true position)
-        self._x = None  # biased position
-        self._r = None  # reward
+        self._p = 0.0  # ground truth (true position)
+        self._x = 0.0  # biased position
+        self._r = 0.0  # reward
 
         # info
-        self._dist = None
+        self._dist = 0.0
 
         # action space
         self.action_space = spaces.Box(low=-20, high=20)
@@ -76,7 +78,7 @@ class MovingTargetEnv(gym.Env):
         observation = self._get_obs()
 
         # reset dist
-        self._dist = None
+        self._dist = 0.0
         info = self._get_info()
 
         if self.render_mode == "human":
@@ -102,10 +104,12 @@ class MovingTargetEnv(gym.Env):
     ## Helper methods ##
 
     def _draw_alpha(self):
-        self._aplha = uniform(-10, 10)
+        alpha = uniform(-10, 10)
+        self._alpha = alpha
+        print("in draw alpha", self._alpha)
 
     def _draw_pos(self):
-        self.p = uniform(self.pos_dom[0], self.pos_dom[1])
+        self._p = uniform(self.pos_dom[0], self.pos_dom[1])
 
     def _compute_biased_pos(self):
         self._x = self._p + self._alpha
@@ -118,6 +122,6 @@ class MovingTargetEnv(gym.Env):
             self._r = -self._dist
         return self._r
 
-    def _update_true_pos(self, r):
+    def _update_true_pos(self):
         if self._r > 0:
             self._draw_pos()
