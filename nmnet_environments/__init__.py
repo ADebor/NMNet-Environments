@@ -2,19 +2,19 @@
 from gym.envs.registration import register
 
 register(
-    id="Benchmark1-v0",
-    entry_point="environments.envs:Benchmark_1",
+    id="MovingTarget-v0",
+    entry_point="nmnet_environments.envs:MovingTargetEnv",
     max_episode_steps=300,
 )
 
 register(
-    id="Benchmark2-v0",
-    entry_point="environments.envs:Benchmark_2",
+    id="MultipleReferences-v0",
+    entry_point="nmnet_environments.envs:MultipleReferencesEnv",
     max_episode_steps=300,
 )
 
 register(
-    id="Benchmark3-v0",
-    entry_point="environments.envs:Benchmark_3",
+    id="WindyReference-v0",
+    entry_point="nmnet_environments.envs:WindyReferenceEnv",
     max_episode_steps=300,
 )
