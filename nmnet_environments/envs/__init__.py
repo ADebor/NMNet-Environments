@@ -1,3 +1,3 @@
-from environments.envs.moving_target import MovingTargetEnv
-from environments.envs.multiple_references import MultipleReferencesEnv
-from environments.envs.windy_reference import WindyReferenceEnv
+from nmnet_environments.envs.moving_target import MovingTargetEnv
+from nmnet_environments.envs.multiple_references import MultipleReferencesEnv
+from nmnet_environments.envs.windy_reference import WindyReferenceEnv
