@@ -5,6 +5,7 @@ import numpy as np
 from random import uniform, choice
 import copy
 
+
 class MovingTargetEnv(gym.Env):
 
     metadata = {
@@ -18,14 +19,14 @@ class MovingTargetEnv(gym.Env):
 
         # rendering specs
         self.window_size = 512
-        
+
         # env specs
         self._alpha = 0.0
         if alpha:
             self._alpha = alpha
         else:
             self._draw_alpha()
-            
+
         self.pos_dom = [-5.0 - self._alpha, 5.0 - self._alpha]
 
         self._p = 0.0  # ground truth (true position)
