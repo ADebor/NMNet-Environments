@@ -5,7 +5,7 @@ import numpy as np
 from random import uniform, choice
 import copy
 
-class Benchmark_3(gym.Env):
+class WindyReferenceEnv(gym.Env):
 
     metadata = {
         "render_modes": [

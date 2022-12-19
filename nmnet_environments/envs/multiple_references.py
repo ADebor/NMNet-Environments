@@ -5,7 +5,7 @@ import numpy as np
 from random import uniform, choice
 import copy
 
-class Benchmark_2(gym.Env):
+class MultipleReferencesEnv(gym.Env):
 
     metadata = {
         "render_modes": [
