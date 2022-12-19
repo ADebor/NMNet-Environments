@@ -1,3 +1,3 @@
-from environments.envs.bm1 import Benchmark_1
-from environments.envs.bm2 import Benchmark_2
-from environments.envs.bm3 import Benchmark_3
+from environments.envs.moving_target import MovingTargetEnv
+from environments.envs.multiple_references import MultipleReferencesEnv
+from environments.envs.windy_reference import WindyReferenceEnv
