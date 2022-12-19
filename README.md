@@ -11,6 +11,6 @@ TODO
 
 ## Installation
 ```bash
-cd nmnet_environments
+cd NMNet-Environments
 pip install -e .
 ```
