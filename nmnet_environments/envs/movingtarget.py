@@ -57,4 +57,8 @@ class CustomEnv(gym.Env):
         
         # Draw the arrows
         pygame.draw.polygon(self.window, (255, 0, 0), [(target_pos * self.arrow_size, 0), (target_pos * self.arrow_size + self.arrow_size // 2, self.arrow_size // 2), (target_pos * self.arrow_size, self.arrow_size)])
-        pygame.draw.polygon(self.window, (0, 255, 0), [(action_pos * self.arrow_size, 0), (action_pos * self.arrow_size + self.arrow_size // 2
+        pygame.draw.polygon(self.window, (0, 255, 0), [(action_pos * self.arrow_size, 0), (action_pos * self.arrow_size + self.arrow_size // 2, self.arrow_size // 2), (action_pos * self.arrow_size, self.arrow_size)])
+        pygame.draw.polygon(self.window, (0, 0, 255), [(state_pos * self.arrow_size, 0), (state_pos * self.arrow_size + self.arrow_size // 2, self.arrow_size // 2), (state_pos * self.arrow_size, self.arrow_size)])
+
+        # Update the display
+        pygame.display.update()
