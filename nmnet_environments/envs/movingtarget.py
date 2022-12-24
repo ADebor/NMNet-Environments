@@ -16,9 +16,8 @@ class CustomEnv(gym.Env):
         
         # Set the rendering parameters
         self.bar_length = 10
-        self.bar_center = 0
         self.arrow_size = 20
-        self.window_size = (self.bar_length * self.arrow_size, self.arrow_size)
+        self.window_size = (self.arrow_size, self.arrow_size * self.bar_length)
         self.window = pygame.display.set_mode(self.window_size)
         
     def reset(self):
@@ -49,16 +48,17 @@ class CustomEnv(gym.Env):
     def render(self, mode='human'):
         # Clear the window
         self.window.fill((255, 255, 255))
-        
+
         # Compute the positions of the arrows
-        target_pos = self.bar_center + int(self.target_pos * self.bar_length / (self.bar_length / 2))
-        action_pos = self.bar_center + int(self.state * self.bar_length / (self.bar_length / 2))
-        state_pos = self.bar_center + int(self.state * self.bar_length / (self.bar_length / 2))
-        
+        target_pos = int((self.target_pos + 5) / (self.bar_length / 2) * self.bar_length)
+        action_pos = int((self.state + 5) / (self.bar_length / 2) * self.bar_length)
+        state_pos = int((self.state + 5) / (self.bar_length / 2) * self.bar_length)
+
         # Draw the arrows
-        pygame.draw.polygon(self.window, (255, 0, 0), [(target_pos * self.arrow_size, 0), (target_pos * self.arrow_size + self.arrow_size // 2, self.arrow_size // 2), (target_pos * self.arrow_size, self.arrow_size)])
-        pygame.draw.polygon(self.window, (0, 255, 0), [(action_pos * self.arrow_size, 0), (action_pos * self.arrow_size + self.arrow_size // 2, self.arrow_size // 2), (action_pos * self.arrow_size, self.arrow_size)])
-        pygame.draw.polygon(self.window, (0, 0, 255), [(state_pos * self.arrow_size, 0), (state_pos * self.arrow_size + self.arrow_size // 2, self.arrow_size // 2), (state_pos * self.arrow_size, self.arrow_size)])
+        pygame.draw.polygon(self.window, (255, 0, 0), [(0, target_pos * self.arrow_size), (self.arrow_size // 2, target_pos * self.arrow_size + self.arrow_size // 2), (self.arrow_size, target_pos * self.arrow_size)])
+        pygame.draw.polygon(self.window, (0, 255, 0), [(0, action_pos * self.arrow_size), (self.arrow_size // 2, action_pos * self.arrow_size + self.arrow_size // 2), (self.arrow_size, action_pos * self.arrow_size)])
+        pygame.draw.polygon(self.window, (0, 0, 255), [(0, state_pos * self.arrow_size), (self.arrow_size // 2, state_pos * self.arrow_size + self.arrow_size // 2), (self.arrow_size, state_pos * self.arrow_size)])
 
         # Update the display
         pygame.display.update()
+
